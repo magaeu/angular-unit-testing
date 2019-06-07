@@ -1,0 +1,34 @@
+<form [formGroup]="quoteForm"
+      (ngSubmit)="onSubmit()"
+      novalidate>
+  <label>
+    What Quote is on your mind ?
+    <input formControlName="text"
+           name="inputText"
+           id="quoteText">
+  </label>
+  <button type="submit"
+          name="submitBtn"
+          id="submitBtn"
+          [disabled]="quoteForm.pristine">
+    Create new quote
+  </button>
+  <!--  <button type="reset" (click)="revert()" [disabled]="contactForm.pristine">Revert</button>-->
+</form>
+
+<div class="row">
+  <div class="card mb-3 col-5 list-card"
+       id="quote-cards"
+       style="max-width: 18rem;"
+       *ngFor="let quote of quoteList; let i = index"
+       (click)="removeQuote(i)">
+    <div class="card-body"
+         id="card-text">
+      <h6>{{ quote.text }}</h6>
+    </div>
+    <div class="card-footer text-muted"
+         id="card-footer">
+      <small>Created on {{ quote.dateCreated }}</small>
+    </div>
+  </div>
+</div>
